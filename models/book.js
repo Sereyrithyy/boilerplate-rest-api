@@ -18,6 +18,14 @@ const bookSchema = new mongoose.Schema({
         min: [1000, 'Publication year should be a valid year'],
         max: [new Date().getFullYear(), 'Publication year should be a valid year']
     },
+    tags: {
+        type: [String],
+        required: [true, 'At least one tag is required'],
+        validate: {
+            validator: (v) => v.length <= 5,
+            message: 'Number of tags should not exceed 5'
+        }
+    },
     createAt: {
         type: Date,
         default: Date.now
